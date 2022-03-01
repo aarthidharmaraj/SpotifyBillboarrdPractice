@@ -5,8 +5,8 @@ import requests
 authurl = "https://accounts.spotify.com/api/token"
 authheaders = {}
 authdata = {}
-clientId = "1f1c8c80af8c409ba66133b6275b3457" #app client id
-clientSecret = "59faebe005a441f09176e8253a2eafaf" #app client secret
+clientId = "*****" #app client id
+clientSecret = "****" #app client secret
 
 ## Encodeing client secret and client id
 def getAccessToken(clientId,clientSecret):
@@ -36,7 +36,7 @@ def getPlayListTracks(token,playlistID):
 ##Api requests
 token=getAccessToken(clientId,clientSecret)
     # print(token)
-playlistID = "5cC0qp5cnTqS1hvrs1UTKq?si=283ab66875544577"
+playlistID = "3rhI0UCEDbEhRk4HCzd0Uc?si=1b547ea625324eaf"
 
 tracklist=getPlayListTracks(token,playlistID)
 print(json.dumps(tracklist,indent=2))
