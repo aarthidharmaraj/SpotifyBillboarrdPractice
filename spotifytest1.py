@@ -1,26 +1,52 @@
+# import json
+# import base64
+# import requests
+# url = "https://accounts.spotify.com/api/token"
+# headers = {}
+# data = {}
+clientId = "*****" #app client id
+clientSecret = "*****" #app client secret
+# message = f"{clientId}:{clientSecret}"
+# messageBytes = message.encode()#convert to bytes 
+# base64Bytes = base64.b64encode(messageBytes)
+# base64Message = base64Bytes.decode()#convert back to string
+# headers['Authorization'] = f"Basic {base64Message}"
+# data['grant_type'] = "client_credentials"
+# r = requests.post(url, headers=headers, data=data)
+
+# p=r.json()
+# print(p)
+# token = r.json()['access_token']
+# print(token)
+# # Use Access Token to call playlist endpoint
+
+# # playlistId = "myPlaylistId"
+# # playlistUrl = f"https://api.spotify.com/v1/playlists/{playlistId}"
+# # headers = {
+# #     "Authorization": "Bearer " + token
+# # }
+
+# # res = requests.get(url=playlistUrl, headers=headers)
+
+# # print(json.dumps(res.json(), indent=2))
 import requests
-import json
 import base64
-client_id = '768397ee06d1480381d47e4f728a4c8d'
-client_secret = '5adaecabce97484798f394e64b7c54aa'
+import json
 
-##for access token
-client_creds = f"{client_id}:{client_secret} "
-# print(type(client_creds))
+# Step 1 - Authorization 
+url = "https://accounts.spotify.com/api/token"
+headers = {}
+data = {}
 
-client_creds_b64=base64.b64encode(client_creds.encode())
-# print(client_creds_b64)
-# print(base64.b64encode(client_creds_b64))
-# print(client_creds.encode().decode())
-token_url="https://accounts.spotify.com/api/token"
-method="POST"
-token_data={
-    "grant_type":"client_credentials"
-}
-token_headers = {
-    "Authorization":f"Basic {client_creds_b64.decode()}" #<base64 encoded client_id:client_secret>
-}
-# print(token_header)
-r=requests.post(token_url,data=token_data,headers=token_headers)
-r1 = r.json()
-print(r1)
+# Encode as Base64
+message = f"{clientId}:{clientSecret}"
+messageBytes = message.encode('ascii')
+base64Bytes = base64.b64encode(messageBytes)
+base64Message = base64Bytes.decode('ascii')
+
+
+headers['Authorization'] = f"Basic {base64Message}"
+data['grant_type'] = "client_credentials"
+
+r = requests.post(url, headers=headers, data=data)
+print(r.json())
