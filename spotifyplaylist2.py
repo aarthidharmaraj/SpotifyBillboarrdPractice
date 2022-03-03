@@ -14,7 +14,7 @@ import boto3
 # SET SPOTIPY_CLIENT_SECRET=***
 # SET SPOTIPY_REDIRECT_URI=***
 scope = "playlist-modify-public"
-username='3172j37o53nutdinxbs3kh7ynyae'
+username='your spotify username'
 
 token=SpotifyOAuth(scope=scope,username=username)
 spotifyObject=spotipy.Spotify(auth_manager=token)
